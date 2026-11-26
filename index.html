@@ -46,6 +46,17 @@ select{width:100%;height:56px;border:1px solid #cbd6e2;border-radius:12px;backgr
 .example-sentence{font-size:clamp(18px,3.8vw,22px);font-weight:800;line-height:1.65;color:#213b56;overflow-wrap:anywhere}
 .example-translation{border-top:1px solid #e1e8f0;margin-top:12px;padding-top:11px;color:#596a7b;font-size:14px;line-height:1.7;word-break:keep-all}
 .mode-description{font-size:12px;color:var(--muted);line-height:1.6;margin:8px 0 0}
+
+.week-picker{margin-top:12px;padding:14px;border:1px solid #dce5ef;border-radius:14px;background:#f7f9fc}
+.week-picker-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-bottom:11px}
+.week-picker-title{font-size:13px;font-weight:900;color:#30445b}
+.week-picker-tools{display:flex;gap:6px}
+.week-picker-tools button{border:1px solid #d4deea;border-radius:8px;background:#fff;color:#405a75;font-size:11px;font-weight:800;padding:6px 9px;min-height:32px}
+.week-check-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.week-chip{display:flex;align-items:center;justify-content:center;gap:6px;min-height:42px;padding:8px 5px;border:1px solid #d8e1eb;border-radius:10px;background:#fff;color:#40536a;font-size:13px;font-weight:800;cursor:pointer}
+.week-chip input{width:16px;height:16px;accent-color:#173454;margin:0}
+.week-picker-note{font-size:11px;color:#758496;line-height:1.55;margin:10px 0 0}
+@media(max-width:420px){.week-check-grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
 .hint{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#42617f;font-size:19px;letter-spacing:.06em;background:#f3f7fb;border:1px dashed #cad7e5;border-radius:10px;padding:12px 14px;display:inline-block;max-width:100%;overflow-wrap:anywhere}
 .answer-row{margin-top:22px}.answer-row label{font-size:13px;font-weight:850;display:block;margin-bottom:8px;color:#30445b}
 .answer{width:100%;height:56px;border:1px solid #cbd6e2;border-radius:12px;padding:0 14px;font-size:18px;outline:none;color:var(--ink);background:#fff;-webkit-appearance:none;appearance:none}
@@ -128,8 +139,21 @@ select{width:100%;height:56px;border:1px solid #cbd6e2;border-radius:12px;backgr
       <p class="mode-description" id="modeDescription">한국어 뜻과 첫 글자 힌트를 보고 영단어를 직접 입력합니다.</p>
       <label class="field-label" for="scope" style="margin-top:18px">테스트 범위 선택</label>
       <select id="scope" onchange="updateSelectedCount()">
-        <option value="15">15주차</option><option value="16">16주차</option><option value="17">17주차</option><option value="18">18주차</option><option value="19">19주차</option><option value="20">20주차</option><option value="21">21주차</option><option value="all">전체 범위 (15~21주차)</option><option value="random30" id="random30Option" disabled>전체 중 30개 무작위 (예문 테스트 전용)</option>
+        <option value="15">15주차</option><option value="16">16주차</option><option value="17">17주차</option><option value="18">18주차</option><option value="19">19주차</option><option value="20">20주차</option><option value="21">21주차</option><option value="all">전체 범위 (15~21주차)</option><option value="custom">직접 주차 선택 (여러 주차 조합)</option><option value="random30" id="random30Option" disabled>전체 중 30개 무작위 (예문 테스트 전용)</option>
       </select>
+      <div id="customWeekPicker" class="week-picker hidden">
+        <div class="week-picker-head"><span class="week-picker-title">출제할 주차를 골라 주세요</span><div class="week-picker-tools"><button type="button" onclick="setAllWeeks(true)">전체 선택</button><button type="button" onclick="setAllWeeks(false)">선택 해제</button></div></div>
+        <div class="week-check-grid">
+          <label class="week-chip"><input type="checkbox" name="customWeek" value="15" onchange="updateSelectedCount()"><span>15주차</span></label>
+          <label class="week-chip"><input type="checkbox" name="customWeek" value="16" onchange="updateSelectedCount()"><span>16주차</span></label>
+          <label class="week-chip"><input type="checkbox" name="customWeek" value="17" onchange="updateSelectedCount()"><span>17주차</span></label>
+          <label class="week-chip"><input type="checkbox" name="customWeek" value="18" onchange="updateSelectedCount()"><span>18주차</span></label>
+          <label class="week-chip"><input type="checkbox" name="customWeek" value="19" onchange="updateSelectedCount()"><span>19주차</span></label>
+          <label class="week-chip"><input type="checkbox" name="customWeek" value="20" onchange="updateSelectedCount()"><span>20주차</span></label>
+          <label class="week-chip"><input type="checkbox" name="customWeek" value="21" onchange="updateSelectedCount()"><span>21주차</span></label>
+        </div>
+        <p class="week-picker-note" id="customWeekNote">선택한 주차의 단어만 모아 무작위 순서로 전부 출제합니다. 최소 한 주차 이상 선택해 주세요.</p>
+      </div>
       <div class="info-grid"><div class="info"><strong>265개</strong><span>전체 단어 · 구동사 제외</span></div><div class="info"><strong id="selectedCount">38개</strong><span>선택 범위 출제</span></div><div class="info"><strong>자동 채점</strong><span>오답 다시 풀기</span></div></div>
       <button type="button" class="primary" id="startBtn" onclick="startTestFromSelection()">테스트 시작하기</button>
       <p class="note" id="scopeNote">선택한 범위의 단어를 무작위 순서로 전부 출제합니다. 주차별 테스트는 해당 주차 전체, 전체 테스트는 15~21주차 전체를 한 번씩 출제합니다. 구동사는 제외했습니다.</p>
@@ -173,6 +197,7 @@ let questions = [];
 let currentIndex = 0;
 let results = [];
 let activeScope = '15';
+let activeWeeks = [];
 let activeMode = 'meaning';
 let isGraded = false;
 const BOOKMARKS_KEY = 'zoomgyul_bookmarks_v1';
@@ -194,8 +219,23 @@ function shuffle(items) {
   }
   return copy;
 }
-function flattenWords(scope) {
-  const weeks = scope === 'all' ? Object.keys(VOCAB) : [scope];
+function getSelectedWeeks() {
+  return Array.from(document.querySelectorAll('input[name="customWeek"]:checked'))
+    .map(input => input.value)
+    .sort((a, b) => Number(a) - Number(b));
+}
+function setAllWeeks(checked) {
+  document.querySelectorAll('input[name="customWeek"]').forEach(input => { input.checked = checked; });
+  updateSelectedCount();
+}
+function flattenWords(scope, selectedWeeks) {
+  const weeks = Array.isArray(scope)
+    ? scope
+    : scope === 'custom'
+      ? (selectedWeeks || getSelectedWeeks())
+      : scope === 'all'
+        ? Object.keys(VOCAB)
+        : [scope];
   return weeks.flatMap(week => (VOCAB[week] || []).map(([word, meaning]) => ({week, word, meaning, example:EXAMPLES[word].sentence, translation:EXAMPLES[word].translation})));
 }
 function normalizeAnswer(value) { return String(value).toLowerCase().trim().replace(/\s+/g, ' '); }
@@ -204,11 +244,21 @@ function firstLetterHint(word) {
 }
 function updateSelectedCount() {
   const scope = byId('scope').value;
-  const count = scope === 'random30' ? 30 : flattenWords(scope).length;
+  const selectedWeeks = scope === 'custom' ? getSelectedWeeks() : [];
+  const count = scope === 'random30' ? 30 : scope === 'custom'
+    ? flattenWords(selectedWeeks).length
+    : flattenWords(scope).length;
   byId('selectedCount').textContent = count + '개';
-  byId('scopeNote').textContent = scope === 'random30'
-    ? '15~21주차 전체 265개 단어 중 매번 무작위로 30개를 출제합니다. 테스트를 새로 시작할 때마다 출제 단어가 바뀝니다.'
-    : '선택한 범위의 단어를 무작위 순서로 전부 출제합니다. 주차별 테스트는 해당 주차 전체, 전체 테스트는 15~21주차 전체를 한 번씩 출제합니다. 구동사는 제외했습니다.';
+  setVisible('customWeekPicker', scope === 'custom');
+  if (scope === 'random30') {
+    byId('scopeNote').textContent = '15~21주차 전체 265개 단어 중 매번 무작위로 30개를 출제합니다. 테스트를 새로 시작할 때마다 출제 단어가 바뀝니다.';
+  } else if (scope === 'custom') {
+    byId('scopeNote').textContent = selectedWeeks.length
+      ? selectedWeeks.map(week => week + '주차').join(', ') + ' 단어 ' + count + '개를 무작위 순서로 전부 출제합니다.'
+      : '아직 선택한 주차가 없습니다. 위에서 한 주차 이상 선택해 주세요.';
+  } else {
+    byId('scopeNote').textContent = '선택한 범위의 단어를 무작위 순서로 전부 출제합니다. 주차별 테스트는 해당 주차 전체, 전체 테스트는 15~21주차 전체를 한 번씩 출제합니다. 구동사는 제외했습니다.';
+  }
 }
 function updateModeDescription() {
   const exampleMode = byId('mode').value === 'example';
@@ -222,19 +272,33 @@ function updateModeDescription() {
 function startTestFromSelection() {
   activeMode = byId('mode').value;
   const selectedScope = byId('scope').value;
+  let selectedWeeks = null;
+  if (selectedScope === 'custom') {
+    selectedWeeks = getSelectedWeeks();
+    if (!selectedWeeks.length) {
+      window.alert('퀴즈를 시작하려면 15~21주차 중 한 주차 이상 선택해 주세요.');
+      return;
+    }
+  }
   if (selectedScope === 'random30' && activeMode !== 'example') {
     window.alert('전체 랜덤 30개는 예문 테스트에서만 사용할 수 있습니다.');
     return;
   }
-  startTest(selectedScope, null, false);
+  startTest(selectedScope, null, false, selectedWeeks);
 }
-function startTest(scope, selectedQuestions, keepMode) {
-  const allWords = scope === 'random30' ? flattenWords('all') : flattenWords(scope);
+function startTest(scope, selectedQuestions, keepMode, selectedWeeks) {
+  const chosenWeeks = scope === 'custom' ? (selectedWeeks || activeWeeks || getSelectedWeeks()) : [];
+  const allWords = scope === 'random30'
+    ? flattenWords('all')
+    : scope === 'custom'
+      ? flattenWords(chosenWeeks)
+      : flattenWords(scope);
   const source = selectedQuestions
     ? selectedQuestions.slice()
     : (scope === 'random30' ? shuffle(allWords).slice(0, 30) : allWords);
   if (!source.length) { window.alert('선택한 범위에 출제할 단어가 없습니다.'); return; }
   activeScope = scope;
+  activeWeeks = chosenWeeks.slice();
   if (!keepMode) activeMode = byId('mode').value;
   questions = shuffle(source);
   currentIndex = 0;
@@ -245,7 +309,13 @@ function startTest(scope, selectedQuestions, keepMode) {
   setVisible('startScreen', false);
   setVisible('resultScreen', false);
   setVisible('quizScreen', true);
-  byId('scopeLabel').textContent = scope === 'all' ? '전체 범위 테스트' : scope === 'random30' ? '전체 랜덤 30개 예문 테스트' : scope + '주차 테스트';
+  byId('scopeLabel').textContent = scope === 'all'
+    ? '전체 범위 테스트'
+    : scope === 'random30'
+      ? '전체 랜덤 30개 예문 테스트'
+      : scope === 'custom'
+        ? chosenWeeks.map(week => week + '주차').join(' · ') + ' 선택 테스트'
+        : scope + '주차 테스트';
   renderQuestion();
   window.scrollTo(0, 0);
 }
@@ -431,7 +501,7 @@ function returnToStart() {
 }
 function retryWrong() {
   const wrong = results.filter(r => !r.correct).map(({week, word, meaning, example, translation}) => ({week, word, meaning, example, translation}));
-  if (wrong.length) startTest(activeScope, wrong, true);
+  if (wrong.length) startTest(activeScope, wrong, true, activeWeeks);
 }
 // Enter works for both answer submission and moving forward. This listener remains active
 // after the answer field is disabled following grading (a disabled input cannot receive Enter).
