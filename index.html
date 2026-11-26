@@ -63,12 +63,60 @@ select{width:100%;height:56px;border:1px solid #cbd6e2;border-radius:12px;backgr
 .footer{text-align:center;font-size:11px;color:#7d8b9a;margin-top:14px;line-height:1.7}
 .js-status{display:inline-block;margin-top:5px;padding:5px 9px;border-radius:99px;background:#fff3d9;color:#805b1c;font-weight:800}
 .js-status.ready{background:#e8f6ed;color:#17633f}
+
+.home-tabs{display:grid;grid-template-columns:1fr 1fr;gap:9px;margin:0 0 14px}
+.home-tab{border:1px solid var(--line);border-radius:12px;background:#fff;color:var(--muted);min-height:48px;font-weight:850;display:flex;align-items:center;justify-content:center;gap:8px}
+.home-tab.active{background:#eaf0f7;border-color:#b8c9dc;color:var(--navy)}
+.home-tab .tab-count{display:inline-flex;min-width:23px;height:23px;align-items:center;justify-content:center;border-radius:99px;background:#eef2f6;color:#52667c;font-size:12px;padding:0 6px}
+.question-title-row{display:flex;justify-content:space-between;align-items:center;gap:12px;margin-bottom:12px}
+.question-number{margin-bottom:0}
+.bookmark-toggle{width:38px;height:38px;flex:0 0 38px;border:1px solid #dce3eb;border-radius:11px;background:#fff;color:#657487;display:inline-flex;align-items:center;justify-content:center;padding:7px}
+.bookmark-toggle svg{width:21px;height:21px;display:block}
+.bookmark-toggle .bookmark-shape{fill:transparent;stroke:currentColor;stroke-width:1.8;stroke-linejoin:round}
+.bookmark-toggle.saved{background:#fff9e8;border-color:#ebcf7b;color:#a87808}
+.bookmark-toggle.saved .bookmark-shape{fill:#ffd84d;stroke:#b9840b}
+.bookmark-toggle:active{transform:scale(.94)}
+.bookmark-screen-head{padding:25px 25px 19px;border-bottom:1px solid #e8edf3}
+.bookmark-screen-head h2{margin:0 0 7px;color:var(--navy);font-size:22px}
+.bookmark-screen-head p{margin:0;color:var(--muted);font-size:13px;line-height:1.6}
+.bookmark-screen-body{padding:20px 22px 25px}
+.bookmark-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.bookmark-card{position:relative;min-width:0}
+.flashcard{display:block;position:relative;width:100%;height:188px;border:0;border-radius:16px;background:transparent;padding:0;text-align:center;perspective:1000px;-webkit-perspective:1000px;touch-action:manipulation;isolation:isolate;overflow:visible}
+.flashcard-inner{display:block;position:absolute;inset:0;width:100%;height:100%;transform-style:preserve-3d;-webkit-transform-style:preserve-3d;transition:transform .42s ease;will-change:transform}
+.flashcard.flipped .flashcard-inner{transform:rotateY(180deg);-webkit-transform:rotateY(180deg)}
+.flashcard-face{display:flex;position:absolute;inset:0;width:100%;height:100%;flex-direction:column;justify-content:center;align-items:center;gap:10px;padding:23px 17px 18px;border:1px solid #dce4ed;border-radius:16px;background:linear-gradient(145deg,#fff,#f5f8fc);box-shadow:0 7px 18px rgba(25,48,77,.06);backface-visibility:hidden;-webkit-backface-visibility:hidden;overflow:hidden}
+.flashcard-back{transform:rotateY(180deg);-webkit-transform:rotateY(180deg);background:linear-gradient(145deg,#f4f8fc,#eaf1f8);border-color:#cbd8e6}
+.flashcard-label{font-size:11px;font-weight:900;letter-spacing:.08em;color:#7c8b9a}
+.flashcard-main{font-size:clamp(16px,2.8vw,19px);font-weight:900;line-height:1.5;color:var(--navy);word-break:keep-all;overflow-wrap:anywhere}
+.flashcard-week{font-size:11px;color:#8794a2;background:#edf1f5;border-radius:99px;padding:4px 9px}
+.flashcard-flip-hint{font-size:11px;color:#8a98a8;margin-top:1px}
+.flashcard-back .flashcard-main{font-family:ui-sans-serif,system-ui,sans-serif;letter-spacing:.01em;word-break:break-word}
+.remove-bookmark{position:absolute;z-index:3;right:8px;top:8px;width:30px;height:30px;border:1px solid #e1e6ec;border-radius:50%;background:rgba(255,255,255,.95);color:#68798a;font-size:18px;line-height:1;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 7px rgba(0,0,0,.06)}
+.bookmark-empty{padding:25px 18px;text-align:center;color:var(--muted);background:#f6f8fb;border:1px dashed #d5dee8;border-radius:14px;line-height:1.7;font-size:14px}
+.bookmark-top-actions{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:16px}
+.bookmark-top-actions strong{color:var(--navy);font-size:14px}
+.bookmark-top-actions button{min-height:38px;padding:8px 12px;font-size:12px}
+.modal-backdrop{position:fixed;inset:0;z-index:1000;background:rgba(16,31,48,.54);display:flex;align-items:center;justify-content:center;padding:20px}
+.modal-backdrop.hidden{display:none!important}
+.bookmark-modal{width:min(440px,100%);background:#fff;border-radius:20px;padding:25px 23px 21px;box-shadow:0 20px 65px rgba(0,0,0,.24)}
+.bookmark-modal-icon{width:44px;height:44px;border-radius:13px;background:#fff5d9;color:#b27b06;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+.bookmark-modal h2{font-size:21px;color:var(--navy);margin:0 0 10px}
+.bookmark-modal p{font-size:14px;color:#58697b;line-height:1.75;margin:0}
+.bookmark-modal .modal-note{font-size:12px;color:#8693a1;margin-top:10px}
+.modal-actions{display:grid;grid-template-columns:1fr 1.35fr;gap:9px;margin-top:20px}
+.modal-actions button{min-height:46px;padding:9px 10px;font-size:13px}
+@media(max-width:560px){.bookmark-grid{grid-template-columns:1fr}.flashcard{height:165px}.bookmark-screen-head{padding:22px 19px 17px}.bookmark-screen-body{padding:18px 16px 22px}.bookmark-modal{padding:22px 19px 18px}}
 @media(max-width:560px){.shell{margin:14px auto 26px}.hero{padding:24px 21px}.content,.question{padding:21px 19px 23px}.quiz-head{padding:18px 19px 14px}.result-top{padding:23px 18px 19px}.result-body{padding:20px 18px 23px}.info-grid{gap:6px}.info{padding:11px 5px}.info strong{font-size:16px}.info span{font-size:10px}.actions{flex-direction:column}.actions .quiet{order:2}.korean{min-height:0}}
 </style>
 </head>
 <body>
 <main class="shell">
   <div class="topline"><div class="brand">줌귤</div><div>WEEK 15–21 · VOCAB TEST</div></div>
+  <nav class="home-tabs" id="homeTabs" aria-label="홈 메뉴">
+    <button type="button" class="home-tab active" id="testTab" onclick="openTestHome()">어휘 테스트</button>
+    <button type="button" class="home-tab" id="bookmarkTab" onclick="openBookmarks()"><svg width="17" height="17" viewBox="0 0 24 24" aria-hidden="true"><path d="M6 3.8h12v16.4l-6-3.8-6 3.8z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg> 북마크 <span class="tab-count" id="bookmarkCount">0</span></button>
+  </nav>
   <section class="card" id="startScreen">
     <div class="hero"><div class="eyebrow">2026 · ENGLISH II</div><h1>줌귤 영어 어휘 테스트</h1><p>한국어 뜻 또는 예문을 보고 첫 글자 힌트를 참고해 영단어를 직접 입력해 보세요.</p></div>
     <div class="content">
@@ -90,7 +138,7 @@ select{width:100%;height:56px;border:1px solid #cbd6e2;border-radius:12px;backgr
 
   <section class="card hidden" id="quizScreen">
     <div class="quiz-head"><div class="quiz-meta"><span id="scopeLabel">15주차 테스트</span><span id="countLabel">1 / 38</span></div><div class="progress-track"><div class="progress-fill" id="progressFill"></div></div></div>
-    <div class="question"><div class="question-number" id="questionNumber">QUESTION 01</div>
+    <div class="question"><div class="question-title-row"><div class="question-number" id="questionNumber">QUESTION 01</div><button type="button" class="bookmark-toggle" id="bookmarkToggle" onclick="toggleCurrentBookmark()" aria-label="이 단어 북마크 저장" aria-pressed="false" title="북마크 저장"><svg viewBox="0 0 24 24" aria-hidden="true"><path class="bookmark-shape" d="M6.5 3.75h11a1 1 0 0 1 1 1v15.5L12 16.1l-6.5 4.15V4.75a1 1 0 0 1 1-1z"/></svg></button></div>
       <div id="meaningPanel"><div class="korean" id="meaning">한국어 뜻</div></div>
       <div id="examplePanel" class="example-panel hidden"><div class="example-sentence" id="exampleSentence">The example sentence goes here.</div><div class="example-translation" id="exampleTranslation">예문 번역</div></div>
       <div class="hint-label" id="hintLabel">첫 글자 힌트</div><div class="hint" id="hint">c_____</div>
@@ -99,7 +147,21 @@ select{width:100%;height:56px;border:1px solid #cbd6e2;border-radius:12px;backgr
     </div>
   </section>
 
+  <section class="card hidden" id="bookmarkScreen">
+    <div class="bookmark-screen-head"><h2>내 북마크</h2><p>저장한 단어를 플래시 카드로 복습해 보세요. 카드를 누르면 영어 단어가 뒤집혀 나타납니다.</p></div>
+    <div class="bookmark-screen-body"><div class="bookmark-top-actions"><strong id="bookmarkSummary">저장한 단어 0개</strong><button type="button" class="secondary" onclick="openTestHome()">테스트로 돌아가기</button></div><div id="bookmarkGrid" class="bookmark-grid"></div></div>
+  </section>
+
   <section class="card hidden" id="resultScreen"><div class="result-top"><div class="eyebrow" style="color:#6d7e91">TEST COMPLETE</div><h1 style="color:#173454">테스트 결과</h1><div class="score" id="score">0 / 38</div><div class="result-sub" id="scoreMessage">결과 설명</div></div><div class="result-body"><h2 id="wrongHeading">틀린 단어</h2><div id="mistakes" class="mistakes"></div><div class="result-actions"><button class="secondary" id="retryWrongBtn" type="button" onclick="retryWrong()">오답 다시 풀기</button><button class="primary" id="restartBtn" type="button" onclick="returnToStart()">처음으로</button></div></div></section>
+  <div class="modal-backdrop hidden" id="bookmarkIntro" role="dialog" aria-modal="true" aria-labelledby="bookmarkIntroTitle">
+    <div class="bookmark-modal">
+      <div class="bookmark-modal-icon"><svg width="25" height="25" viewBox="0 0 24 24" aria-hidden="true"><path d="M6.5 3.75h11a1 1 0 0 1 1 1v15.5L12 16.1l-6.5 4.15V4.75a1 1 0 0 1 1-1z" fill="#ffd84d" stroke="#a87808" stroke-width="1.6" stroke-linejoin="round"/></svg></div>
+      <h2 id="bookmarkIntroTitle">북마크 기능 안내</h2>
+      <p>문제를 풀다가 다시 외우고 싶은 단어가 있으면 문제 오른쪽 위의 책갈피 아이콘을 눌러 저장하세요. 저장한 단어는 한국어 뜻과 영어 단어가 한 쌍으로 보관되며, 북마크 탭에서 플래시 카드로 넘겨 보며 복습할 수 있습니다.</p>
+      <p class="modal-note">북마크는 현재 사용 중인 브라우저와 기기에 저장됩니다. 다른 브라우저나 기기와 자동으로 동기화되지는 않습니다.</p>
+      <div class="modal-actions"><button type="button" class="secondary" onclick="dismissBookmarkIntro(false)">닫기</button><button type="button" class="primary" onclick="dismissBookmarkIntro(true)">더 이상 띄우지 않기</button></div>
+    </div>
+  </div>
   <div class="footer">iPad에서는 파일 미리보기 대신 Safari에서 열어 주세요.<br>아래 상태가 <b>프로그램 준비 완료</b>로 바뀌면 버튼을 사용할 수 있습니다.<br><span id="jsStatus" class="js-status">브라우저 실행 기능 확인 중…</span></div>
 </main>
 
@@ -113,6 +175,15 @@ let results = [];
 let activeScope = '15';
 let activeMode = 'meaning';
 let isGraded = false;
+const BOOKMARKS_KEY = 'zoomgyul_bookmarks_v1';
+const BOOKMARK_INTRO_KEY = 'zoomgyul_bookmark_intro_hidden_v1';
+function loadBookmarks() {
+  try {
+    const saved = JSON.parse(localStorage.getItem(BOOKMARKS_KEY) || '[]');
+    return Array.isArray(saved) ? saved.filter(item => item && typeof item.word === 'string' && typeof item.meaning === 'string') : [];
+  } catch (_) { return []; }
+}
+let bookmarks = loadBookmarks();
 const byId = (id) => document.getElementById(id);
 function setVisible(id, visible) { byId(id).classList.toggle('hidden', !visible); }
 function shuffle(items) {
@@ -169,6 +240,8 @@ function startTest(scope, selectedQuestions, keepMode) {
   currentIndex = 0;
   results = [];
   isGraded = false;
+  setVisible('homeTabs', false);
+  setVisible('bookmarkScreen', false);
   setVisible('startScreen', false);
   setVisible('resultScreen', false);
   setVisible('quizScreen', true);
@@ -207,6 +280,7 @@ function renderQuestion() {
   byId('answerInput').readOnly = false;
   byId('submitBtn').textContent = '정답 확인';
   byId('feedback').className = 'feedback hidden';
+  updateCurrentBookmarkButton();
 }
 function handleMainAction() {
   if (isGraded) { goToNextQuestion(); return; }
@@ -232,6 +306,102 @@ function goToNextQuestion() {
 function escapeHTML(value) {
   return String(value).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
 }
+function persistBookmarks() {
+  try { localStorage.setItem(BOOKMARKS_KEY, JSON.stringify(bookmarks)); }
+  catch (_) { window.alert('브라우저 저장 공간을 사용할 수 없어 북마크를 저장하지 못했습니다.'); }
+  updateBookmarkCount();
+}
+function updateBookmarkCount() {
+  byId('bookmarkCount').textContent = String(bookmarks.length);
+  byId('bookmarkSummary').textContent = '저장한 단어 ' + bookmarks.length + '개';
+}
+function updateCurrentBookmarkButton() {
+  const button = byId('bookmarkToggle');
+  if (!button) return;
+  const q = questions[currentIndex];
+  const saved = !!q && bookmarks.some(item => item.word === q.word);
+  button.classList.toggle('saved', saved);
+  button.setAttribute('aria-pressed', String(saved));
+  button.setAttribute('aria-label', saved ? '북마크에서 제거' : '이 단어 북마크 저장');
+  button.title = saved ? '북마크 저장됨 · 누르면 제거' : '북마크 저장';
+}
+function toggleCurrentBookmark() {
+  const q = questions[currentIndex];
+  if (!q) return;
+  const existingIndex = bookmarks.findIndex(item => item.word === q.word);
+  if (existingIndex >= 0) bookmarks.splice(existingIndex, 1);
+  else bookmarks.unshift({word:q.word, meaning:q.meaning, week:q.week});
+  persistBookmarks();
+  updateCurrentBookmarkButton();
+}
+function renderBookmarks() {
+  updateBookmarkCount();
+  const grid = byId('bookmarkGrid');
+  if (!bookmarks.length) {
+    grid.innerHTML = '<div class="bookmark-empty" style="grid-column:1/-1">아직 저장한 단어가 없어요.<br>테스트 화면 오른쪽 위의 책갈피 아이콘을 눌러 단어를 저장해 보세요.</div>';
+    return;
+  }
+  grid.innerHTML = bookmarks.map(item => {
+    const word = escapeHTML(item.word);
+    const meaning = escapeHTML(item.meaning);
+    const week = escapeHTML(item.week || '');
+    return '<article class="bookmark-card"><button type="button" class="flashcard" data-word="' + word + '" aria-pressed="false" aria-label="' + word + ' 플래시 카드 뒤집기" onclick="flipBookmarkCard(this)"><span class="flashcard-inner"><span class="flashcard-face flashcard-front"><span class="flashcard-label">한국어 뜻</span><span class="flashcard-main">' + meaning + '</span><span class="flashcard-week">WEEK ' + week + '</span><span class="flashcard-flip-hint">카드를 눌러 영어 단어 확인</span></span><span class="flashcard-face flashcard-back"><span class="flashcard-label">ENGLISH</span><span class="flashcard-main">' + word + '</span><span class="flashcard-week">WEEK ' + week + '</span><span class="flashcard-flip-hint">다시 누르면 뜻으로 돌아갑니다</span></span></span></button><button type="button" class="remove-bookmark" data-remove-word="' + word + '" aria-label="' + word + ' 북마크 삭제" title="북마크 삭제">×</button></article>';
+  }).join('');
+}
+function removeBookmark(word) {
+  bookmarks = bookmarks.filter(item => item.word !== word);
+  persistBookmarks();
+  renderBookmarks();
+  updateCurrentBookmarkButton();
+}
+function openTestHome() {
+  setVisible('bookmarkScreen', false);
+  setVisible('quizScreen', false);
+  setVisible('resultScreen', false);
+  setVisible('startScreen', true);
+  setVisible('homeTabs', true);
+  byId('testTab').classList.add('active');
+  byId('bookmarkTab').classList.remove('active');
+  window.scrollTo(0,0);
+}
+function showBookmarkScreen() {
+  setVisible('startScreen', false);
+  setVisible('quizScreen', false);
+  setVisible('resultScreen', false);
+  setVisible('bookmarkScreen', true);
+  setVisible('homeTabs', true);
+  byId('testTab').classList.remove('active');
+  byId('bookmarkTab').classList.add('active');
+  renderBookmarks();
+  window.scrollTo(0,0);
+}
+function openBookmarks() {
+  let doNotShow = false;
+  try { doNotShow = localStorage.getItem(BOOKMARK_INTRO_KEY) === '1'; } catch (_) {}
+  if (doNotShow) showBookmarkScreen();
+  else setVisible('bookmarkIntro', true);
+}
+function dismissBookmarkIntro(doNotShowAgain) {
+  if (doNotShowAgain) {
+    try { localStorage.setItem(BOOKMARK_INTRO_KEY, '1'); } catch (_) {}
+  }
+  setVisible('bookmarkIntro', false);
+  showBookmarkScreen();
+}
+function flipBookmarkCard(card) {
+  if (!card || !card.classList.contains('flashcard')) return;
+  const flipped = card.classList.toggle('flipped');
+  card.setAttribute('aria-pressed', String(flipped));
+}
+byId('bookmarkGrid').addEventListener('click', function(event) {
+  const target = event.target;
+  const removeButton = target && typeof target.closest === 'function' ? target.closest('[data-remove-word]') : null;
+  if (removeButton) {
+    event.preventDefault();
+    event.stopPropagation();
+    removeBookmark(removeButton.getAttribute('data-remove-word'));
+  }
+});
 function showResults() {
   setVisible('quizScreen', false);
   setVisible('resultScreen', true);
@@ -249,7 +419,11 @@ function showResults() {
 function returnToStart() {
   setVisible('quizScreen', false);
   setVisible('resultScreen', false);
+  setVisible('bookmarkScreen', false);
   setVisible('startScreen', true);
+  setVisible('homeTabs', true);
+  byId('testTab').classList.add('active');
+  byId('bookmarkTab').classList.remove('active');
   byId('answerInput').value = '';
   byId('answerInput').disabled = false;
   byId('answerInput').readOnly = false;
@@ -270,6 +444,7 @@ document.addEventListener('keydown', function(event) {
 });
 byId('jsStatus').textContent = '프로그램 준비 완료';
 byId('jsStatus').classList.add('ready');
+updateBookmarkCount();
 updateSelectedCount();
 updateModeDescription();
 </script>
